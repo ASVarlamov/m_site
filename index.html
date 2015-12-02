@@ -25,6 +25,9 @@
 
 <body>
 
+<button name="btn_anketa" id="btn_anketa" class="anketa">
+    <a href="#contact"  class="anketa_ref">Заказать звонок</a>
+</button>
 
 <div class="preloader" id="preloader">
     <div class="item">
@@ -50,7 +53,7 @@
                 <h1>Дар мебель</h1>
                 <hr/>
                 <p>Одна из лучших фирм по протизводству мебели. <br/>
-                   Кухни, шкафы-купе, офисная мебель и многое многое другое.</p>
+                    Кухни, шкафы-купе, офисная мебель и многое многое другое.</p>
 
                 <a href="#about-us">
                     <div class="read-more">Узнать больше</div>
@@ -298,10 +301,10 @@
 
             <div class="logo">
 
-                <a href="http://www.todance.ru"><img width="100px" height="100px" src="img/logos/logo1.png"></a>
-                <a href="http://www.todance.ru"><img width="100px" height="100px" src="img/logos/logo2.png"></a>
-                <a href="http://www.todance.ru"><img width="100px" height="100px" src="img/logos/logo3.png"></a>
-                <a href="http://www.todance.ru"><img width="100px" height="100px" src="img/logos/logo4.png"></a>
+                <a href="http://www.to-dance.ru"><img width="100px" height="100px" src="img/logos/logo1.png"></a>
+                <a href="http://www.to-dance.ru"><img width="100px" height="100px" src="img/logos/logo2.png"></a>
+                <a href="http://www.to-dance.ru"><img width="100px" height="100px" src="img/logos/logo3.png"></a>
+                <a href="http://www.to-dance.ru"><img width="100px" height="100px" src="img/logos/logo4.png"></a>
 
             </div>
 
@@ -315,6 +318,9 @@
     <section class="contact" id="contact">
         <h1>КОНТАКТЫ</h1>
         <hr/>
+        <br/>
+
+        <h2>Напишите нам</h2>
 
         <div class="content">
 
@@ -328,7 +334,7 @@
                     </div>
 
                     <div class="column-2">
-                        E-MAIL<br/><br/>
+                        ТЕЛЕФОН<br/><br/>
                         <input name="email" id="email" value=""/>
                     </div>
 
@@ -345,20 +351,16 @@
                 </form>
 
             </div>
-
-
             <div class="contact-text">
 
-                Для связи с нами заполните форму слева<br/><br/>
+                Либо свяжитесь любым удобным способом:<br/>
 
-                Либо свяжитесь любым<br/>
-                удобным способом<br/><br/>
-
-                <strong>Ростислав</strong><br/><br/>
-
+                <strong>Ростислав</strong><br/>
                 e-mail: <strong>contact@thomsoon.com</strong><br/>
                 телефон: <strong>+79999999999</strong><br/>
-                Адрес: <strong>г.Красноярск ул. Монтажников 58</strong><br/>
+                адрес: <strong>г.Красноярск ул. Монтажников 58</strong><br/>
+
+                <div id="map"></div>
 
             </div>
 
@@ -401,9 +403,51 @@
 <script src="js/masonry.pkgd.min.js"></script>
 <!-- All script -->
 <script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/yamap.js"></script>
 <!-- All script -->
 
 <script>
+    function getScrollTop() {
+        if (typeof window.pageYOffset !== 'undefined') {
+            // Most browsers
+            return window.pageYOffset;
+        }
+
+        var d = document.documentElement;
+        if (d.clientHeight) {
+            // IE in standards mode
+            return d.scrollTop;
+        }
+
+        // IE in quirks mode
+        return document.body.scrollTop;
+    }
+
+    window.onscroll = function () {
+//        $('#btn_anketa').css('top', $(this).scrollTop());
+    };
+
+    ymaps.ready(function () {
+        var myMap = new ymaps.Map('map', {
+                    center: [55.98, 92.945],
+                    zoom: 15
+                }, {
+                    searchControlProvider: 'yandex#search'
+                }),
+                myPlacemark = new ymaps.Placemark([55.979782, 92.944581], {
+                    hintContent: 'Мы находимся здесь',
+                    balloonContent: '"Дар мебель", Монтажников 58'
+                }, {
+                    // Опции.
+                    // Необходимо указать данный тип макета.
+                    iconLayout: 'default#image',
+                    // Своё изображение иконки метки.
+                    iconImageHref: 'img/p.png'
+                });
+
+        myMap.geoObjects.add(myPlacemark);
+    });
+
     $(function () {
 
         var $container = $('.grid');
