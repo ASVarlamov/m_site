@@ -1,8 +1,8 @@
 
   // niceScroll
   $("html").niceScroll();
-    
-    
+
+
   // Stick menu
   $(".menu").sticky({topSpacing:0});
 
@@ -61,7 +61,7 @@ else
 {
 
   // FadeTo elements
-  if ( $(window).width() > 1023) {  
+  if ( $(window).width() > 1023) {
 
     tiles = $("h2, h3, .column-one, .column-two, .column-three, .grid li, .contact .content .form, .contact .content .contact-text ").fadeTo(0, 0);
 
